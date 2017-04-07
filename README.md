@@ -16,13 +16,13 @@ Playlist generator
 
 positional arguments:
 
-  username    Your spotify username
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username    Your spotify username
   
-  songs_file  A file with a song in each line
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;songs_file  A file with a song in each line
 
 optional arguments:
 
-  -h, --help  show this help message and exit
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-h, --help  show this help message and exit
 
 ## mayer.txt
 Example songs file
