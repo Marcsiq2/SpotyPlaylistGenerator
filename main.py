@@ -55,8 +55,7 @@ def main(username, songs_file):
 
     else:
         print "Playlist doesn't exist, creating new one..."
-        playlist_name = raw_input('Enter another name for your NEW playlist: ')
-        sp.user_playlist_create(ausername,playlist_name , public=True)
+        sp.user_playlist_create(username,playlist_name , public=True)
         pid = get_playlist_id(sp, username, playlist_name)
         sp.user_playlist_add_tracks(username, pid, tracks, position=None)
 
