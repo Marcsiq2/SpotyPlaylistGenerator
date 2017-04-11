@@ -10,19 +10,7 @@ SPOTIPY_CLIENT_SECRET
 SPOTIPY_REDIRECT_URI
 
 ## Usage:
-usage: main.py [-h] username songs_file
+Find usage information in --help of the python files!
 
-Playlist generator
-
-positional arguments:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;username    Your spotify username
-  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;songs_file  A file with a song in each line
-
-optional arguments:
-
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-h, --help  show this help message and exit
-
-## mayer.txt
-Example songs file
+## Examples
+Example playlists file
