@@ -13,6 +13,10 @@ def authenticate(username):
     sp = spotipy.Spotify(auth=token)
     return sp
 
+def get_playlists(sp, username):
+    plays = [pl['name'] for pl in sp.user_playlists(username)['items'] if pl['owner']['id'] == username]
+    return plays
+
 
 def get_playlist_id(sp, username, name):
     for pl in sp.user_playlists(username)['items']:
@@ -26,9 +30,9 @@ def save_to_txt(data, playlist_name, num):
     thefile = open(filename, 'w')
     for k, item in enumerate(data):
         if num:
-            thefile.write("%i - %s\n" % (k, item))
+            thefile.write("%i - %s\n" % (k, item.encode('utf-8')))
         else:
-            thefile.write("%s\n" % item)
+            thefile.write("%s\n" % item.encode('utf-8'))
     thefile.close()
     print "Done!"
 
