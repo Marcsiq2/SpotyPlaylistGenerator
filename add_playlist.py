@@ -1,43 +1,8 @@
 # shows a user's playlists (need to be authenticated via oauth)
-import csv
-import sys
-import spotipy
 import argparse
-import spotipy.util as util
-from spotipy.oauth2 import SpotifyClientCredentials
-
+from utils import *
 scope = 'playlist-modify-public'
 
-def authenticate(username):
-    token = util.prompt_for_user_token(username, scope)
-    sp = spotipy.Spotify(auth=token)
-    return sp
-
-def parse_song_file(sp, song_file):
-    print "Searching for the songs in spotify..."
-    content = song_file.readlines()
-    data = [x.strip() for x in content] 
-    len_data = 0
-    tracks = []
-    for row in list(set(data)):
-        query = row
-        len_data+=1
-        search = sp.search(query)['tracks']['items']
-        if len(search) > 0:
-            tracks.append(search[0]['id'])
-        else:
-            print ">>> Song not found: " + query 
-            
-    print 'Number of query songs: ' + str(len_data)
-    print 'Number of found songs: ' + str(len(tracks))
-    return tracks
-
-def get_playlist_id(sp, username, name):
-    for pl in sp.user_playlists(username)['items']:
-        if name == pl['name']:
-            print pl['external_urls'].keys()
-            return pl['id'], pl['external_urls']
-    return False, False
 
 def main(username, songs_file):
     sp = authenticate(username)
