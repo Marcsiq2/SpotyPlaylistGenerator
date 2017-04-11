@@ -1,4 +1,5 @@
 # shows a user's playlists (need to be authenticated via oauth)
+# -*- coding: utf-8 -*-
 import argparse
 from utils import *
 

@@ -1,7 +1,8 @@
 import csv
 import sys
-import os
+# -*- coding: utf-8 -*-
 import re
+import os
 import spotipy
 import spotipy.util as util
 from utils import *
@@ -26,7 +27,7 @@ def get_playlist_id(sp, username, name):
     return False, False
 
 def save_to_txt(data, playlist_name, num):
-    filename = os.getcwd() + "/" + playlist_name.replace(' ','_') + '.txt'
+    filename = os.getcwd() + "/" + playlist_name.replace(' ','_').replace('/','-') + '.txt'
     print "Saving playlist names to --> " + filename
     thefile = open(filename, 'w')
     for k, item in enumerate(data):
