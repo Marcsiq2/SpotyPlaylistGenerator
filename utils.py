@@ -1,6 +1,7 @@
 import csv
 import sys
 import os
+import re
 import spotipy
 import spotipy.util as util
 from utils import *
@@ -43,7 +44,7 @@ def parse_song_file(sp, song_file):
     len_data = 0
     tracks = []
     for row in list(set(data)):
-        query = row
+        query = re.sub(r"[^\w\s]", '', row)
         len_data+=1
         search = sp.search(query)['tracks']['items']
         if len(search) > 0:

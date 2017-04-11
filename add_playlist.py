@@ -12,7 +12,7 @@ def main(username, songs_file):
     playlist_name = raw_input('Enter a name for your playlist: ')
     pid, puri = get_playlist_id(sp, username, playlist_name)
     if pid:
-        print "Playlist" + playlist_name" + exists, just adding songs..."
+        print "Playlist" + playlist_name +" exists, just adding songs..."
         tracks_id = [t['track']['id'] for t in sp.user_playlist_tracks(username, pid)['items']]
         tracks_add = [t for t in tracks if t not in tracks_id]
         if tracks_add:
