@@ -35,8 +35,9 @@ def parse_song_file(sp, song_file):
 def get_playlist_id(sp, username, name):
     for pl in sp.user_playlists(username)['items']:
         if name == pl['name']:
-            return pl['id']
-    return False
+            print pl['external_urls'].keys()
+            return pl['id'], pl['external_urls']
+    return False, False
 
 def main(username, songs_file):
     sp = authenticate(username)
@@ -44,7 +45,7 @@ def main(username, songs_file):
     tracks = parse_song_file(sp, songs_file)
 
     playlist_name = raw_input('Enter a name for your playlist: ')
-    pid = get_playlist_id(sp, username, playlist_name)
+    pid, puri = get_playlist_id(sp, username, playlist_name)
     if pid:
         print "Playlist exists, just adding songs..."
         tracks_id = [t['track']['id'] for t in sp.user_playlist_tracks(username, pid)['items']]
@@ -56,8 +57,11 @@ def main(username, songs_file):
     else:
         print "Playlist doesn't exist, creating new one..."
         sp.user_playlist_create(username,playlist_name , public=True)
-        pid = get_playlist_id(sp, username, playlist_name)
+        pid, puri = get_playlist_id(sp, username, playlist_name)
         sp.user_playlist_add_tracks(username, pid, tracks, position=None)
+        print "Added " + str(len(tracks)) + " new song(s) to the playlist!"
+
+    print "*** Playlist uri ***\n" + str(puri['spotify'])
 
 
 if __name__ == '__main__':
